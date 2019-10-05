@@ -1,0 +1,52 @@
+{
+  "players":  [
+    {
+      "id": 1,
+      "name": "Jan",
+      "character": "Cloud",
+      "characterid": 62
+    },
+    {
+      "id": 2,
+      "name": "Marlene",
+      "character": "King K. Rool",
+      "characterid": 69
+    },
+    {
+      "id": 3,
+      "name": "Kyle",
+      "character": "Palutena",
+      "characterid": 54
+    },
+    {
+      "id": 4,
+      "name": "Nik",
+      "character": "Young Link",
+      "characterid": 25
+    },
+    {
+      "id": 5,
+      "name": "Mike",
+      "character": "Snake",
+      "characterid": 36
+    },
+    {
+      "id": 6,
+      "name": "Brian",
+      "character": "Wii Fit Trainer",
+      "characterid": 50
+    },
+    {
+      "id": 7,
+      "name": "Phil",
+      "character": "Pikachu",
+      "characterid": 9
+    },
+    {
+      "id": 8,
+      "name": "Nick",
+      "character": "R.O.B.",
+      "characterid": 45
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 <template>
   <div :class="isChampionship ? 'championship' : 'match'">
-    <BracketMatchItem :class="{left: isChampionship}" name="Marlene" :seed="1" :score="0" :reverse="reverse"/>
+    <BracketMatchItem :class="{left: isChampionship}" :player="player1" :reverse="reverse"/>
     <div v-if="isChampionship" class="champion" />
-    <BracketMatchItem :class="{right: isChampionship}" name="Nick" :seed="8" :score="0" :reverse="isChampionship ? true : reverse"/>
+    <BracketMatchItem :class="{right: isChampionship}" :player="player2" :reverse="isChampionship ? true : reverse"/>
   </div>
 </template>
 
@@ -15,6 +15,14 @@ export default {
     BracketMatchItem
   },
   props: {
+    player1: {
+      type: Object,
+      default: null
+    },
+    player2: {
+      type: Object,
+      default: null
+    },
     isChampionship: {
       type: Boolean,
       default: false

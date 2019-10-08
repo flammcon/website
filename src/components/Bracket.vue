@@ -1,21 +1,21 @@
 <template>
   <div class="container">
     <div id="round1-left" class="round1">
-      <BracketMatch class="game" />
-      <BracketMatch class="game" />
+      <BracketMatch class="game" :player1="players[0]" :player2="players[7]"/>
+      <BracketMatch class="game" :player1="players[4]" :player2="players[3]"/>
     </div>
     <div id="round2-left">
       <BracketMatch class="game" />
     </div>
     <div id="championship" class="ship">
-      <BracketMatch class="game" :isChampionship="true"/>
+      <BracketMatch class="game" :isChampionship="true" />
     </div>
     <div id="round2-right">
-      <BracketMatch class="game" :reverse="true"/>
+      <BracketMatch class="game" :reverse="true" />
     </div>
     <div id="round1-right" class="round1">
-      <BracketMatch class="game" :reverse="true"/>
-      <BracketMatch class="game" :reverse="true"/>
+      <BracketMatch class="game" :reverse="true" :player1="players[1]" :player2="players[6]"/>
+      <BracketMatch class="game" :reverse="true" :player1="players[5]" :player2="players[2]"/>
     </div>
   </div>
 </template>

@@ -1,12 +1,15 @@
 <template>
-  <div class="container">
-    <div id="rank">{{index + 1}}</div>
-    <div id="player">
+  <v-list-item @click="click">  
+    <v-list-item-icon>
+      <v-icon v-text="getIconName(index)"></v-icon>
+    </v-list-item-icon>
+    <v-list-item-content > 
+      <v-list-item-subtitle v-text="info.name"></v-list-item-subtitle>
+    </v-list-item-content>
+        <v-list-item-avatar tile>
       <img :src="getImageUrl(info.character, info.characterid)" :alt="info.character"/>
-      <!-- <img class="icon" src="../assets/smash/42-King Dedede.png"/> -->
-      <div class="name">{{info.name}}</div>
-    </div>
-  </div>
+    </v-list-item-avatar>
+  </v-list-item>
 </template>
 
 <script>
@@ -34,20 +37,23 @@ export default {
     }, 
     getImageUrl(name, id) {
       return require(`../assets/smash/${id}-${name.replace(/[.]/g, "")}.png`);
-    }
+    },
+    getIconName(index) {
+      return `mdi-numeric-${index+1}`;
+    },
+    click() { }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container {
+/* .container {
   font-family: 'Nunito', Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  /* background-color:snow; */
   width: 150px;
   height: 50px;
   margin: 2px;
@@ -77,5 +83,5 @@ img {
 
 #rank {
   margin-right: 10px;
-}
+} */
 </style>

@@ -1,10 +1,19 @@
 <template>
-  <div :class="[{reverse: reverse}, 'bracket-match-item']">
-    <div id="seed">{{seed}}</div>
-    <img id="icon" src="../assets/smash/42-King Dedede.png"/>
-    <div id="bracket-item-name">{{name}}</div>
-    <div id="score">{{score}}</div>
-  </div>
+  <v-card width=175 hover tile v-if="player">
+    <v-card-actions>
+      <v-icon v-if="!reverse" v-text="getIconName(player.seed)"/>
+      <v-avatar tile v-if="reverse">
+        <img id="icon" :src="player.characterUrl"/>
+      </v-avatar>
+      <v-card-text>
+        {{player.name}}
+      </v-card-text>
+      <v-avatar tile v-if="!reverse">
+        <img id="icon" :src="player.characterUrl"/>
+      </v-avatar>
+      <v-icon v-if="reverse" v-text="getIconName(player.seed)"/>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
@@ -12,6 +21,14 @@ import * as data from '../data/characters.json'
 export default {
   name: 'BracketMatchItem',
   props: {
+    player: {
+      type: Object,
+      default: () => { return {
+        "name": "",
+        "seed": 0,
+        "characterUrl": require("../assets/smash/42-King Dedede.png")
+      }}
+    },
     seed: Number,
     name: String,
     score: Number,
@@ -35,6 +52,9 @@ export default {
     }, 
     getImageUrl(character) {
       return require(`../assets/smash/${character.id}-${character.name.replace(/[.]/g, "")}.png`);
+    },
+    getIconName(seed) {
+      return `mdi-numeric-${seed}`;
     }
   }
 }
@@ -48,7 +68,7 @@ export default {
   /* justify-content: space-around; */
   align-items: center;
   background-color: lightgrey;
-  width: 150px;
+  width: 175px;
   height: 50px;
   margin-left: 10px;
   margin-right: 10px;
@@ -80,7 +100,7 @@ export default {
 
 #icon {
   width: 50px;
-  background-color: gold;
+  /* background-color: gold; */
 }
 
 #bracket-item-name {

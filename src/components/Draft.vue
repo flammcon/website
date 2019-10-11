@@ -1,7 +1,6 @@
 <template>
   <div class="draft">
     <h1>Draft</h1>
-    <h1 v-if="loading">Loading...</h1>
     <character-selector/>
   </div>
 </template>
@@ -16,14 +15,9 @@ export default {
   },
   props: {
   },
-  data() {
-    return {
-      loading: false,
-      characters: []
-    }
-  },
   created() {
-    this.fetchData();
+    //this.$store.dispatch('getAllCharacters')
+    // this.fetchData();
   },
   methods: {
     fetchData() {

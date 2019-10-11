@@ -34,9 +34,10 @@
 </template>
 
 <script>
-import * as data from '../data/Sept19/Sept19.json'
-import draggable from 'vuedraggable'
-import PlayerCard from './PlayerCard.vue'
+import * as data from '../data/Sept19/Sept19.json';
+import SmashApi from '../api/smash';
+import draggable from 'vuedraggable';
+import PlayerCard from './PlayerCard.vue';
 import Bracket from './Bracket.vue';
 import Pods from './Pods.vue';
 

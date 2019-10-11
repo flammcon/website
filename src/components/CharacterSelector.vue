@@ -9,19 +9,19 @@
 
 <script>
 import * as data from '../data/characters.json'
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'CharacterSelector',
   props: {
   },
-  data() {
-    return {
-      loading: false,
-      characters: []
-    }
-  },
   created() {
-    this.fetchData();
+    //this.fetchData();
+    this.$store.dispatch('getAllCharacters')
   },
+  computed: mapState({
+    characters: state => state.characters
+  }),
   methods: {
     fetchData() {
       this.loading = true;

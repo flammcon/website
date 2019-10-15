@@ -1,16 +1,16 @@
 <template>
   <div v-if="players">
     <v-row>
-      <v-col lg="3"><Pod title="ODD" :pool="odds"/></v-col>
-      <v-col lg="3"><Pod title="EVEN" :pool="evens"/></v-col>
-      <v-col lg="3"><Pod title="RED" :pool="red"/></v-col>
-      <v-col lg="3"><Pod title="BLUE" :pool="blue"/></v-col>
+      <v-col lg="3" class="pt-0"><Pod title="ODD" :pool="odds"/></v-col>
+      <v-col lg="3" class="pt-0"><Pod title="EVEN" :pool="evens"/></v-col>
+      <v-col lg="3" class="pt-0"><Pod title="RED" :pool="red"/></v-col>
+      <v-col lg="3" class="pt-0"><Pod title="BLUE" :pool="blue"/></v-col>
     </v-row>
     <v-row>
-      <v-col lg="3"><Pod title="TOP" :pool="top"/></v-col>
-      <v-col lg="3"><Pod title="BOTTOM" :pool="bottom"/></v-col>
-      <v-col lg="3"><Pod title="MIDDLE" :pool="middle"/></v-col>
-      <v-col lg="3"><Pod title="EDGES" :pool="edges"/></v-col>
+      <v-col lg="3" class="pb-0"><Pod title="TOP" :pool="top"/></v-col>
+      <v-col lg="3" class="pb-0"><Pod title="BOTTOM" :pool="bottom"/></v-col>
+      <v-col lg="3" class="pb-0"><Pod title="MIDDLE" :pool="middle"/></v-col>
+      <v-col lg="3" class="pb-0"><Pod title="EDGES" :pool="edges"/></v-col>
     </v-row>
     <v-row justify="center">
       <!-- <v-btn @click="submit">Create Bracket</v-btn> -->

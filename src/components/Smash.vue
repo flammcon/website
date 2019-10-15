@@ -4,29 +4,27 @@
       <h1>Smash</h1>
     </v-row>
     <v-row align="stretch" dense>
-      <v-col lg="2" >
-        <v-col>
-          <v-card class="mx-auto" height="100%" tile>
-            <v-list>
-              <v-subheader>FFA RESULTS</v-subheader>
-              <v-list-item-group v-model="players" color="primary">
-                <draggable v-model="players" group="people" @start="drag=true" @end="drag=false">
-                  <PlayerCard v-for="(player, index) in players" :key="player.characterid" :info="player" :index="index"/>
-                </draggable>
-              </v-list-item-group>
-            </v-list>
-            <v-card-actions class="justify-center">
-              <v-btn @click="submit">Submit</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
+      <v-col lg="2" class="pa-3" >
+        <v-card class="mx-auto" height="100%" tile>
+          <v-list>
+            <v-subheader>FFA RESULTS</v-subheader>
+            <v-list-item-group v-model="players" color="primary">
+              <draggable v-model="players" group="people" @start="drag=true" @end="drag=false">
+                <PlayerCard v-for="(player, index) in players" :key="player.characterid" :info="player" :index="index"/>
+              </draggable>
+            </v-list-item-group>
+          </v-list>
+          <v-card-actions class="justify-center">
+            <v-btn @click="submit">Submit</v-btn>
+          </v-card-actions>
+        </v-card>
       </v-col>
-      <v-col lg="10">
+      <v-col lg="10" class="pa-3">
         <Pods :players="players"/>
       </v-col>
     </v-row>
-    <v-row>
-      <v-card tile>
+    <v-row align="stretch pa-3" dense>
+      <v-card class="mx-auto" width="100%" tile>
         <Bracket :players="seeds"/>
       </v-card>
     </v-row>

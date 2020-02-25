@@ -1,20 +1,20 @@
 <template>
   <div v-if="players">
     <v-row>
-      <v-col lg="3" class="pt-0"><Pod title="ODD" :pool="odds"/></v-col>
-      <v-col lg="3" class="pt-0"><Pod title="EVEN" :pool="evens"/></v-col>
-      <v-col lg="3" class="pt-0"><Pod title="RED" :pool="red"/></v-col>
-      <v-col lg="3" class="pt-0"><Pod title="BLUE" :pool="blue"/></v-col>
+      <v-col lg="3" class="pt-0"><Pod title="ODD" :pool="[1,3,5,7]" :interactive="interactive"/></v-col>
+      <v-col lg="3" class="pt-0"><Pod title="EVEN" :pool="[2,4,6,8]" :interactive="interactive"/></v-col>
+      <v-col lg="3" class="pt-0"><Pod title="RED" :pool="[1,4,5,8]" :interactive="interactive"/></v-col>
+      <v-col lg="3" class="pt-0"><Pod title="BLUE" :pool="[2,3,6,7]" :interactive="interactive"/></v-col>
     </v-row>
     <v-row>
-      <v-col lg="3" class="pb-0"><Pod title="TOP" :pool="top"/></v-col>
-      <v-col lg="3" class="pb-0"><Pod title="BOTTOM" :pool="bottom"/></v-col>
-      <v-col lg="3" class="pb-0"><Pod title="MIDDLE" :pool="middle"/></v-col>
-      <v-col lg="3" class="pb-0"><Pod title="EDGES" :pool="edges"/></v-col>
+      <v-col lg="3" class="pb-0"><Pod title="TOP" :pool="[1,2,3,4]" :interactive="interactive"/></v-col>
+      <v-col lg="3" class="pb-0"><Pod title="BOTTOM" :pool="[5,6,7,8]" :interactive="interactive"/></v-col>
+      <v-col lg="3" class="pb-0"><Pod title="MIDDLE" :pool="[3,4,5,6]" :interactive="interactive"/></v-col>
+      <v-col lg="3" class="pb-0"><Pod title="EDGES" :pool="[1,2,7,8]" :interactive="interactive"/></v-col>
     </v-row>
-    <v-row justify="center">
-      <!-- <v-btn @click="submit">Create Bracket</v-btn> -->
-    </v-row>
+    <!-- <v-row justify="center">
+      <v-btn @click="submit">Create Bracket</v-btn>
+    </v-row> -->
   </div>
 </template>
 
@@ -26,36 +26,13 @@ export default {
     Pod
   },
   props: {
-    players: Array
+    players: Array,
+    interactive: Boolean
   },
   data() {
-    return {
-      loading: false,
-      characters: []
-    }
+    return { }
   },
-  created() {
-    this.fetchData();
-  },
-  methods: {
-    fetchData() {
-      this.loading = true;
-      //this.characters = data.characters;
-      this.loading = false;
-    }, 
-    getImageUrl(character) {
-      return require(`../assets/smash/${character.id}-${character.name.replace(/[.]/g, "")}.png`);
-    },
-    createPod(pod) {
-      return pod.map((player, index) => {
-        return {
-          "name": player.name,
-          "seed": index+1,
-          "characterUrl": this.getImageUrl(player.character, player.characterid)
-        }
-      });
-    }
-  },
+  methods: { },
   computed: {
     odds() {
       return this.players.filter((player, index) => {
@@ -68,19 +45,22 @@ export default {
       });
     },
     top() {
-      return this.players.filter((player, index) => {
-        return index < 4;
-      });
+      return [1,2,3,4]
+      // return this.players.filter((player, index) => {
+      //   return index < 4;
+      // });
     },
     bottom() {
-      return this.players.filter((player, index) => {
-        return index > 3;
-      });
+      return [5,6,7,8]
+      // return this.players.filter((player, index) => {
+      //   return index > 3;
+      // });
     },
     middle() {
-      return this.players.filter((player, index) => {
-        return index > 1 && index < 6;
-      });
+      return []
+      // return this.players.filter((player, index) => {
+      //   return index > 1 && index < 6;
+      // });
     },
     edges() {
       return this.players.filter((player, index) => {

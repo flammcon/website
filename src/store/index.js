@@ -14,12 +14,33 @@ const store = new Vuex.Store({
     setCharacters (state, characters) {
       state.characters = characters;
     },
+    setPlayers (state, players) {
+      state.players = players;
+    },
+    updatePlayerPodScore (state, payload) {
+      const player = state.players.find(x => x.id === payload.id);
+      player.score += payload.score;
+    },
+    clearPlayerPodScores (state) {
+      for (const player of state.players) {
+        player.score = 0;
+      }
+    }
   },
   actions: {
-    getAllCharacters ({ commit }) {
+    loadCharacters ({ commit }) {
       smash.getCharacters(characters => {
         commit('setCharacters', characters);
       });
+    },
+    loadPlayers ({ commit }) {
+      smash.getPlayers(players => {
+        commit('setPlayers', players);
+      })
+    },
+    updatePlayerPodScore({commit}, payload) {
+      // console.log(payload);
+      commit('updatePlayerPodScore', payload);
     }
   }
 });

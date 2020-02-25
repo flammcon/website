@@ -1,18 +1,23 @@
 <template>
-  <v-card class="mx-auto" height="100%" tile>
+  <v-card class="mx-auto" height="100%" tile dense>
     <v-list>
-      <v-subheader>{{title}}</v-subheader>
-      <v-list-item-group v-model="pool" color="primary">
-        <draggable v-model="pool" group="pool" @start="drag=true" @end="drag=false">
-          <PlayerCard v-for="(player, index) in pool" :key="index" :info="player" :index="index"/>
+      <v-subheader class="pod-header">
+        {{title}}
+        <v-switch v-model="locked" @change="updateScores" :disabled="!interactive" dense/>
+      </v-subheader>
+      <v-list v-model="players" :disabled="!interactive || locked">
+        <draggable v-model="players" group="players" @start="drag=true" @end="drag=false">
+          <PlayerCard v-for="(player, index) in players" :key="index" :player="player" :index="index"/>
         </draggable>
-      </v-list-item-group>
+      </v-list>
+      <!-- <v-list v-model="players" v-if="!interactive" disabled>
+        <PlayerCard v-for="(player, index) in players" :key="index" :player="player" :index="index"/>
+      </v-list> -->
     </v-list>
   </v-card>
 </template>
 
 <script>
-import * as data from '../data/characters.json'
 import draggable from 'vuedraggable'
 import PlayerCard from './PlayerCard.vue'
 
@@ -24,28 +29,44 @@ export default {
   },
   props: {
     title: String,
-    pool: {
-      type: Array,
-      default: function() { return [] }
-    }
+    pool: Array,
+    interactive: Boolean
   },
   data() {
     return {
-      loading: false,
-      characters: []
+      locked: false,
+      pod: []
     }
   },
-  created() {
-    this.fetchData();
+  watch: { 
+    interactive(newVal, oldVal) { 
+      if (!newVal) {
+        this.locked = false;
+      }
+    }
+  },
+  computed: {
+    players: {
+      get() {
+        if (this.interactive && this.pod.length > 0) {
+          return this.pod;
+        } else if (this.pod.length > 0){
+          this.pod = [];
+        }
+  
+        return this.$store.state.players.filter((player, index) => this.pool.includes(index+1));        
+      },
+      set(players) {
+        this.pod = players;
+      }
+    }
   },
   methods: {
-    fetchData() {
-      this.loading = true;
-      this.characters = data.characters;
-      this.loading = false;
-    }, 
-    getImageUrl(character) {
-      return require(`../assets/smash/${character.id}-${character.name.replace(/[.]/g, "")}.png`);
+    updateScores(event) {
+      for (let [index, player] of this.players.entries()) {
+        const points = event ? (index+1) : -1 * (index+1);
+        this.$store.dispatch('updatePlayerPodScore', {id: player.id, score: points});
+      }
     }
   }
 }
@@ -53,5 +74,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.pod-header {
+  justify-content: space-between;
+}
 </style>

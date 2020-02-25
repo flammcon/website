@@ -8,8 +8,7 @@
 </template>
 
 <script>
-import * as data from '../data/characters.json'
-import { mapState, mapActions } from 'vuex'
+import { mapState /*, mapActions*/ } from 'vuex'
 
 export default {
   name: 'CharacterSelector',
@@ -17,16 +16,16 @@ export default {
   },
   created() {
     //this.fetchData();
-    this.$store.dispatch('getAllCharacters')
+    this.$store.dispatch('loadCharacters')
   },
   computed: mapState({
     characters: state => state.characters
   }),
   methods: {
     fetchData() {
-      this.loading = true;
-      this.characters = data.characters;
-      this.loading = false;
+      // this.loading = true;
+      // this.characters = data.characters;
+      // this.loading = false;
     }, 
     getImageUrl(character) {
       return require(`../assets/smash/${character.id}-${character.name.replace(/[.]/g, "")}.png`);

@@ -4,40 +4,39 @@
       <v-icon v-text="getIconName(index)"></v-icon>
     </v-list-item-icon>
     <v-list-item-content > 
-      <v-list-item-subtitle v-text="info.name"></v-list-item-subtitle>
+      <v-list-item-subtitle v-text="player.name"></v-list-item-subtitle>
     </v-list-item-content>
         <v-list-item-avatar tile>
-      <img :src="getImageUrl(info.character, info.characterid)" :alt="info.character"/>
+      <img :src="player.character"/>
     </v-list-item-avatar>
   </v-list-item>
 </template>
 
 <script>
-import * as data from '../data/characters.json'
 export default {
   name: 'PlayerCard',
   props: {
-    info: Object,
+    player: Object,
     index: Number
   },
   data() {
     return {
       loading: false,
-      characters: []
+      // characters: []
     }
   },
   created() {
-    this.fetchData();
+    // this.fetchData();
   },
   methods: {
-    fetchData() {
-      this.loading = true;
-      this.characters = data.characters;
-      this.loading = false;
-    }, 
-    getImageUrl(name, id) {
-      return require(`../assets/smash/${id}-${name.replace(/[.]/g, "")}.png`);
-    },
+    // fetchData() {
+    //   this.loading = true;
+    //   this.characters = data.characters;
+    //   this.loading = false;
+    // }, 
+    // getImageUrl(name, id) {
+    //   return require(`../assets/smash/${id}-${name.replace(/[.]/g, "")}.png`);
+    // },
     getIconName(index) {
       return `mdi-numeric-${index+1}`;
     },

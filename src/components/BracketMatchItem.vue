@@ -3,13 +3,13 @@
     <v-card-actions>
       <v-icon v-if="!reverse" v-text="getIconName(player.seed)"/>
       <v-avatar tile v-if="reverse">
-        <img id="icon" :src="player.characterUrl"/>
+        <img id="icon" :src="player.character"/>
       </v-avatar>
       <v-card-text>
         {{player.name}}
       </v-card-text>
       <v-avatar tile v-if="!reverse">
-        <img id="icon" :src="player.characterUrl"/>
+        <img id="icon" :src="player.character"/>
       </v-avatar>
       <v-icon v-if="reverse" v-text="getIconName(player.seed)"/>
     </v-card-actions>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import * as data from '../data/characters.json'
 export default {
   name: 'BracketMatchItem',
   props: {
@@ -42,17 +41,9 @@ export default {
     }
   },
   created() {
-    this.fetchData();
+    // this.fetchData();
   },
   methods: {
-    fetchData() {
-      this.loading = true;
-      this.characters = data.characters;
-      this.loading = false;
-    }, 
-    getImageUrl(character) {
-      return require(`../assets/smash/${character.id}-${character.name.replace(/[.]/g, "")}.png`);
-    },
     getIconName(seed) {
       return `mdi-numeric-${seed}`;
     }

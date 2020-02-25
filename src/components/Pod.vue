@@ -39,7 +39,7 @@ export default {
     }
   },
   watch: { 
-    interactive(newVal, oldVal) { 
+    interactive(newVal/*, oldVal*/) { 
       if (!newVal) {
         this.locked = false;
       }
@@ -50,9 +50,10 @@ export default {
       get() {
         if (this.interactive && this.pod.length > 0) {
           return this.pod;
-        } else if (this.pod.length > 0){
-          this.pod = [];
         }
+        // } else if (this.pod.length > 0){
+        //   this.pod = [];
+        // }
   
         return this.$store.state.players.filter((player, index) => this.pool.includes(index+1));        
       },
